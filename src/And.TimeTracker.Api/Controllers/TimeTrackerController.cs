@@ -11,6 +11,24 @@ public class TimeTrackerController
 {
     #region Get
 
+    [HttpGet("task/all")]
+    public async Task<ActionResult<List<TaskModel>>> GetTasks()
+    {
+        await using var ctx = new ApplicationContext();
+        return await ctx.Tasks
+            .AsNoTracking()
+            .ToListAsync();
+    }
+    
+    [HttpGet("taskGroup/all")]
+    public async Task<ActionResult<List<TaskGroupModel>>> GetTaskGroups()
+    {
+        await using var ctx = new ApplicationContext();
+        return await ctx.TaskGroups
+            .AsNoTracking()
+            .ToListAsync();
+    }
+    
     [HttpGet("task/{id}")]
     public async Task<ActionResult<TaskModel?>> GetTaskById(
         Guid id)

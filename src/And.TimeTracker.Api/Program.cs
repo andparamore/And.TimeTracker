@@ -27,11 +27,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    var factory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<ApplicationContext>>();
-    await using var db = await factory.CreateDbContextAsync();
-    db.Database.Migrate();
-}
-
 await app.RunAsync();

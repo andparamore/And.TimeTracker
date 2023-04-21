@@ -58,15 +58,15 @@ public class ApplicationContext : DbContext
         
         _ = entity.Property(e => e.ScheduledTime)
             .HasColumnType("interval")
-            .HasColumnName("appointment_date_task");
+            .HasColumnName("scheduled_time_task");
         
         _ = entity.Property(e => e.SpendTime)
             .HasColumnType("interval")
-            .HasColumnName("appointment_date_task");
+            .HasColumnName("spend_time_task");
         
         _ = entity.Property(e => e.IsCancelled)
             .HasColumnType("boolean")
-            .HasColumnName("appointment_date_task");
+            .HasColumnName("task_is_cancelled");
 
         _ = entity.HasOne(t => t.TaskGroup)
             .WithMany(tg => tg.Tasks)
@@ -93,6 +93,6 @@ public class ApplicationContext : DbContext
         
         _ = entity.Property(e => e.Color)
             .HasMaxLength(50)
-            .HasColumnName("task_description");
+            .HasColumnName("task_color");
     }
 }
